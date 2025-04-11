@@ -1,0 +1,29 @@
+.app-toolbar {
+  background-color: #cc0000;
+  color: #fff0f0;
+  font-family: "Segoe UI", sans-serif;
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffe6e6;
+  }
+
+  a {
+    color: #fff0f0;
+    font-weight: 500;
+    margin-left: 1rem;
+
+    &:hover {
+      color: #ffe6e6;
+    }
+
+    &:active {
+      color: #ffffff;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}

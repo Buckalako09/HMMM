@@ -1,0 +1,13 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Bejelentkezés</h2>
+
+    <label for="email">Email cím</label>
+    <input id="email" type="email" formControlName="email" required />
+
+    <label for="password">Jelszó</label>
+    <input id="password" type="password" formControlName="password" required />
+
+    <button type="submit" [disabled]="loginForm.invalid">Bejelentkezés</button>
+  </form>
+</div>

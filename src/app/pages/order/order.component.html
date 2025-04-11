@@ -1,0 +1,31 @@
+<h2>Rendelés leadása</h2>
+
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+  <label>Név</label>
+  <input formControlName="name" type="text" />
+
+  <label>Email</label>
+  <input formControlName="email" type="email" />
+
+  <label>Cím</label>
+  <textarea formControlName="address"></textarea>
+
+  <label>Fizetési mód</label>
+  <select formControlName="payment">
+    <option value="card">Bankkártya</option>
+    <option value="cash">Utánvét</option>
+  </select>
+
+  <div class="order-summary">
+    <h3>Rendelés összegzése</h3>
+    <ul>
+      <li *ngFor="let item of cartItems">
+        {{ item.quantity }} × {{ item.name }} –
+        {{ item.price * item.quantity | currency : "HUF" }}
+      </li>
+    </ul>
+    <p><strong>Végösszeg:</strong> {{ total | currency : "HUF" }}</p>
+  </div>
+
+  <button type="submit" [disabled]="orderForm.invalid">Rendelés leadása</button>
+</form>

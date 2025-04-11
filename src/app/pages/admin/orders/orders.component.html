@@ -1,0 +1,21 @@
+<h2>Admin – Rendelések</h2>
+
+<div class="order-list">
+  <div class="order-card" *ngFor="let order of orders">
+    <div class="order-header">
+      <strong>{{ order.id }}</strong> – {{ order.customer }}
+      <span class="status">{{ order.status }}</span>
+    </div>
+    <div class="order-meta">
+      Dátum: {{ order.date }}<br />
+      Összeg: {{ order.total | currency : "HUF" : "symbol" : "1.0-0" }}
+    </div>
+    <ul class="order-items">
+      <li *ngFor="let item of order.items">
+        {{ item.qty }} × {{ item.name }} ({{
+          item.price | currency : "HUF" : "symbol" : "1.0-0"
+        }})
+      </li>
+    </ul>
+  </div>
+</div>

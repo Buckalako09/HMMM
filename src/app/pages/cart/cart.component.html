@@ -1,0 +1,29 @@
+<h2>🛒 Kosár</h2>
+
+<div *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
+  <div class="cart-item" *ngFor="let item of cartItems">
+    <img [src]="item.image" [alt]="item.name" />
+    <div class="item-info">
+      <h3>{{ item.name }}</h3>
+      <p>
+        {{ item.price | currency : "HUF" : "symbol" }} × {{ item.quantity }}
+      </p>
+    </div>
+    <div class="item-total">
+      {{ item.price * item.quantity | currency : "HUF" : "symbol" }}
+    </div>
+  </div>
+
+  <div class="cart-summary">
+    <span>Végösszeg:</span>
+    <strong>{{ total | currency : "HUF" : "symbol" }}</strong>
+  </div>
+
+  <a mat-button routerLink="/order" class="checkout-button"
+    >Tovább a fizetéshez</a
+  >
+</div>
+
+<ng-template #emptyCart>
+  <p class="empty-message">A kosarad üres.</p>
+</ng-template>

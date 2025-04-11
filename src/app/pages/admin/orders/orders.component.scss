@@ -1,0 +1,43 @@
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.order-card {
+  background-color: #fff0f0;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(204, 0, 0, 0.2);
+}
+
+.order-header {
+  font-size: 1.1rem;
+  color: #b30000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  background-color: #cc0000;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.order-meta {
+  color: #800000;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.order-items {
+  margin-top: 0.75rem;
+  padding-left: 1rem;
+  list-style: disc;
+  color: #4d0000;
+}

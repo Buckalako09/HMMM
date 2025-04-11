@@ -1,0 +1,51 @@
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #fff0f0;
+  box-shadow: 0 0 15px rgba(204, 0, 0, 0.3);
+  font-family: "Segoe UI", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #b30000;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  color: #800000;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #cc0000;
+  border-radius: 0.5rem;
+  background-color: #fff8f8;
+}
+
+button {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.75rem;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #a30000;
+}
+
+button:disabled {
+  background-color: #e69999;
+  cursor: not-allowed;
+}

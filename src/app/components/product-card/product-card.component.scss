@@ -1,0 +1,49 @@
+.card {
+  background-color: #fff0f0;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(204, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  height: 200px;
+}
+
+h3 {
+  margin: 0.5rem 0;
+  color: #b30000;
+}
+
+p {
+  color: #4d0000;
+  font-size: 0.9rem;
+}
+
+.price {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #800000;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a30000;
+}

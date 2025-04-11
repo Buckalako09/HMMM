@@ -1,0 +1,36 @@
+.admin-layout {
+  display: flex;
+  padding: 1rem;
+  gap: 2rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff0f0;
+  padding: 1rem;
+  border-radius: 1rem;
+  min-width: 150px;
+  box-shadow: 0 0 10px rgba(204, 0, 0, 0.2);
+
+  a {
+    color: #cc0000;
+    font-weight: 500;
+    text-decoration: none;
+
+    &.active {
+      font-weight: bold;
+      color: #800000;
+    }
+
+    &:hover {
+      color: #a30000;
+    }
+  }
+}
+
+.admin-content {
+  flex-grow: 1;
+}

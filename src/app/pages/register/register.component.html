@@ -1,0 +1,26 @@
+<div class="register-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Regisztráció</h2>
+
+    <label for="name">Név</label>
+    <input id="name" type="text" formControlName="name" required />
+
+    <label for="email">Email cím</label>
+    <input id="email" type="email" formControlName="email" required />
+
+    <label for="password">Jelszó</label>
+    <input id="password" type="password" formControlName="password" required />
+
+    <label for="confirmPassword">Jelszó megerősítése</label>
+    <input
+      id="confirmPassword"
+      type="password"
+      formControlName="confirmPassword"
+      required
+    />
+
+    <button type="submit" [disabled]="registerForm.invalid">
+      Regisztráció
+    </button>
+  </form>
+</div>

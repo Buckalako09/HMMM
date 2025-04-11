@@ -1,0 +1,9 @@
+<h2>Admin – Termékek kezelése</h2>
+
+<div class="product-list">
+  <app-product-card
+    *ngFor="let product of products"
+    [product]="product"
+    mode="admin"
+  />
+</div>
