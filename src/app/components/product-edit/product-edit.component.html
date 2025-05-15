@@ -1,0 +1,35 @@
+<h2>Termék szerkesztése</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-group">
+    <label for="name">Név</label>
+    <input id="name" type="text" formControlName="name" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Leírás</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Ár (Ft)</label>
+    <input id="price" type="number" formControlName="price" />
+  </div>
+
+  <div class="form-group">
+    <label for="image">Kép URL</label>
+    <input id="image" type="text" formControlName="image" />
+  </div>
+
+  <div class="form-group preview">
+    <label>Előnézet:</label><br />
+    <img
+      *ngIf="form.value.image"
+      [src]="form.value.image"
+      alt="Előnézet"
+      style="max-width: 200px; margin-top: 1rem"
+    />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Mentés</button>
+</form>

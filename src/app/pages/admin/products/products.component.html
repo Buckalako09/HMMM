@@ -1,9 +1,19 @@
 <h2>Admin – Termékek kezelése</h2>
 
+<a
+  (click)="goToCreateProduct()"
+  class="add-product-button"
+  style="cursor: pointer"
+>
+  ➕ Új termék hozzáadása
+</a>
+
 <div class="product-list">
   <app-product-card
-    *ngFor="let product of products"
+    *ngFor="let product of products$ | async"
     [product]="product"
     mode="admin"
+    (delete)="onDeleteProduct($event)"
+    (edit)="onEditProduct($event)"
   />
 </div>

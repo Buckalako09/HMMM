@@ -4,3 +4,30 @@
   gap: 2rem;
   margin-top: 2rem;
 }
+
+.add-product-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background-color: #ffffff;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  margin-bottom: 2rem;
+
+  &:hover {
+    background-color: #cc0000;
+    color: #ffffff;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.3);
+  }
+}

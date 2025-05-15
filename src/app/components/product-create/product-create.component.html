@@ -1,0 +1,25 @@
+<h2>Új termék hozzáadása</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <label>Név</label>
+  <input type="text" formControlName="name" />
+
+  <label>Leírás</label>
+  <textarea formControlName="description"></textarea>
+
+  <label>Ár (Ft)</label>
+  <input type="number" formControlName="price" />
+
+  <label>Kép URL</label>
+  <input type="text" formControlName="image" />
+
+  <div *ngIf="form.value.image">
+    <img
+      [src]="form.value.image"
+      alt="Előnézet"
+      style="max-width: 200px; margin-top: 1rem"
+    />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Mentés</button>
+</form>

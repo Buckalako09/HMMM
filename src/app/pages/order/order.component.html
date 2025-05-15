@@ -1,31 +1,66 @@
 <h2>Rendelés leadása</h2>
 
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
-  <label>Név</label>
-  <input formControlName="name" type="text" />
+<ng-container *ngIf="cartItems.length > 0; else emptyCart">
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+    <div class="form-section">
+      <h3>Személyes adatok</h3>
 
-  <label>Email</label>
-  <input formControlName="email" type="email" />
+      <label>Név*</label>
+      <input formControlName="name" type="text" placeholder="Teljes név" />
 
-  <label>Cím</label>
-  <textarea formControlName="address"></textarea>
+      <label>Email*</label>
+      <input formControlName="email" type="email" placeholder="Email cím" />
 
-  <label>Fizetési mód</label>
-  <select formControlName="payment">
-    <option value="card">Bankkártya</option>
-    <option value="cash">Utánvét</option>
-  </select>
+      <label>Telefonszám*</label>
+      <input formControlName="phone" type="tel" placeholder="+36..." />
+    </div>
 
-  <div class="order-summary">
-    <h3>Rendelés összegzése</h3>
-    <ul>
-      <li *ngFor="let item of cartItems">
-        {{ item.quantity }} × {{ item.name }} –
-        {{ item.price * item.quantity | currency : "HUF" }}
-      </li>
-    </ul>
-    <p><strong>Végösszeg:</strong> {{ total | currency : "HUF" }}</p>
+    <div class="form-section">
+      <h3>Szállítási cím</h3>
+
+      <label>Utca, házszám*</label>
+      <input formControlName="street" type="text" />
+
+      <label>Város*</label>
+      <input formControlName="city" type="text" />
+
+      <label>Irányítószám*</label>
+      <input formControlName="postalCode" type="text" />
+
+      <label>Ország*</label>
+      <input formControlName="country" type="text" />
+    </div>
+
+    <div class="form-section">
+      <h3>Fizetési mód</h3>
+      <select formControlName="payment">
+        <option value="card">Bankkártya</option>
+        <option value="cash">Utánvét</option>
+      </select>
+    </div>
+
+    <div class="order-summary">
+      <h3>Rendelés összegzése</h3>
+      <ul>
+        <li *ngFor="let item of cartItems">
+          {{ item.quantity }} × {{ item.name }} –
+          {{ item.price * item.quantity | price }}
+        </li>
+      </ul>
+      <p><strong>Végösszeg:</strong> {{ total | price }}</p>
+    </div>
+
+    <button type="submit" [disabled]="orderForm.invalid || isSubmitting">
+      {{ isSubmitting ? "Feldolgozás..." : "Rendelés leadása" }}
+    </button>
+  </form>
+</ng-container>
+
+<ng-template #emptyCart>
+  <div class="empty-cart-message">
+    <p>
+      A kosár üres. Kérjük, adjon hozzá termékeket a rendelés leadása előtt.
+    </p>
+    <a routerLink="/products">Vissza a termékekhez</a>
   </div>
-
-  <button type="submit" [disabled]="orderForm.invalid">Rendelés leadása</button>
-</form>
+</ng-template>

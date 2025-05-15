@@ -5,25 +5,37 @@
     <img [src]="item.image" [alt]="item.name" />
     <div class="item-info">
       <h3>{{ item.name }}</h3>
-      <p>
-        {{ item.price | currency : "HUF" : "symbol" }} × {{ item.quantity }}
-      </p>
+      <p>{{ item.price | price }}</p>
+      <div class="quantity-control">
+        <button (click)="updateQuantity(item.id!, item.quantity - 1)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="updateQuantity(item.id!, item.quantity + 1)">+</button>
+      </div>
+      <button class="remove-btn" (click)="removeItem(item.id!)">
+        Eltávolítás
+      </button>
     </div>
     <div class="item-total">
-      {{ item.price * item.quantity | currency : "HUF" : "symbol" }}
+      {{ item.price * item.quantity | price }}
     </div>
   </div>
 
   <div class="cart-summary">
     <span>Végösszeg:</span>
-    <strong>{{ total | currency : "HUF" : "symbol" }}</strong>
+    <strong>{{ total | price }}</strong>
   </div>
 
-  <a mat-button routerLink="/order" class="checkout-button"
-    >Tovább a fizetéshez</a
-  >
+  <div class="cart-actions">
+    <button class="clear-cart-btn" (click)="clearCart()">Kosár ürítése</button>
+    <a mat-button routerLink="/order" class="checkout-button"
+      >Tovább a fizetéshez</a
+    >
+  </div>
 </div>
 
 <ng-template #emptyCart>
   <p class="empty-message">A kosarad üres.</p>
+  <a mat-button routerLink="/products" class="continue-shopping"
+    >Vissza a termékekhez</a
+  >
 </ng-template>

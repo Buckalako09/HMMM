@@ -3,9 +3,10 @@
   <h3>{{ product.name }}</h3>
   <p>{{ product.description }}</p>
   <div class="price">
-    {{ product.price | currency : "HUF" : "symbol" : "1.0-0" }}
+    {{ product.price | price }}
   </div>
 
-  <button *ngIf="mode === 'view'">Kosárba</button>
-  <button *ngIf="mode === 'admin'">Szerkesztés</button>
+  <button *ngIf="mode === 'view'" (click)="addToCart()">Kosárba</button>
+  <button *ngIf="mode === 'admin'" (click)="onEdit()">Szerkesztés</button>
+  <button *ngIf="mode === 'admin'" (click)="onDelete()">Törlés</button>
 </div>

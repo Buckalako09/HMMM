@@ -5,6 +5,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
+import { ProductCreateComponent } from './components/product-create/product-create.component';
+import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +16,7 @@ export const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   {
     path: 'admin',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/admin/admin.component').then((m) => m.AdminComponent),
     children: [
@@ -30,6 +34,8 @@ export const routes: Routes = [
             (m) => m.AdminOrdersComponent
           ),
       },
+      { path: 'edit/:id', component: ProductEditComponent },
+      { path: 'create', component: ProductCreateComponent },
       {
         path: '',
         pathMatch: 'full',

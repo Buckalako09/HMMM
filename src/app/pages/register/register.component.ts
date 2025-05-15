@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,10 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private registerService: RegisterService
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -26,17 +30,23 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.registerForm.valid) {
-      const { password, confirmPassword } = this.registerForm.value;
+      const { name, email, password, confirmPassword } =
+        this.registerForm.value;
 
       if (password !== confirmPassword) {
         alert('A jelszavak nem egyeznek!');
         return;
       }
 
-      console.log('Sikeres regisztráció:', this.registerForm.value);
-      // TODO REGISTER LOGIC
+      try {
+        await this.registerService.registerUser(name, email, password);
+        alert('Sikeres regisztráció!');
+        window.location.href = '/login';
+      } catch (err: any) {
+        alert('Hiba a regisztráció során: ' + err.message);
+      }
     }
   }
 }

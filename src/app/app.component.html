@@ -1,13 +1,39 @@
-<mat-toolbar class="app-toolbar">
+<mat-toolbar class="app-toolbar" color="primary">
   <span class="logo">🛍️ HMMM</span>
   <span class="spacer"></span>
-  <a mat-button routerLink="/">Főoldal</a>
-  <a mat-button routerLink="/products">Termékek</a>
-  <a mat-button routerLink="/admin">Admin</a>
-  <a mat-button routerLink="/login">Bejelentkezés</a>
-  <a mat-button routerLink="/register">Regisztráció</a>
-  <a mat-button routerLink="/">Kijelentkezés</a>
-  <a mat-button routerLink="/cart">Kosár</a>
+
+  <!-- Asztali  -->
+  <div class="nav desktop-nav">
+    <a mat-button routerLink="/">Főoldal</a>
+    <a mat-button routerLink="/products">Termékek</a>
+    <a *ngIf="isAdmin()" mat-button routerLink="/admin">Admin</a>
+    <a *ngIf="!isLoggedIn()" mat-button routerLink="/login">Bejelentkezés</a>
+    <a *ngIf="!isLoggedIn()" mat-button routerLink="/register">Regisztráció</a>
+    <a *ngIf="isLoggedIn()" mat-button (click)="logout()">Kijelentkezés</a>
+    <a mat-button routerLink="/cart">Kosár</a>
+  </div>
+
+  <!-- Mobil menü  -->
+  <div class="nav mobile-nav">
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #mobileMenu="matMenu">
+      <button mat-menu-item routerLink="/">Főoldal</button>
+      <button mat-menu-item routerLink="/products">Termékek</button>
+      <button *ngIf="isAdmin()" mat-menu-item routerLink="/admin">Admin</button>
+      <button *ngIf="!isLoggedIn()" mat-menu-item routerLink="/login">
+        Bejelentkezés
+      </button>
+      <button *ngIf="!isLoggedIn()" mat-menu-item routerLink="/register">
+        Regisztráció
+      </button>
+      <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+        Kijelentkezés
+      </button>
+      <button mat-menu-item routerLink="/cart">Kosár</button>
+    </mat-menu>
+  </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

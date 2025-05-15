@@ -1,3 +1,41 @@
+<div class="controls">
+  <div class="filters">
+    <mat-form-field>
+      <mat-label>Rendezés alapja</mat-label>
+      <mat-select
+        [(value)]="sortField"
+        (selectionChange)="changeSortField($event.value)"
+      >
+        <mat-option value="price">Ár szerint</mat-option>
+        <mat-option value="name">Név szerint</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Rendezés iránya</mat-label>
+      <mat-select
+        [(value)]="sortOrder"
+        (selectionChange)="changeSortOrder($event.value)"
+      >
+        <mat-option value="asc">Növekvő</mat-option>
+        <mat-option value="desc">Csökkenő</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
 <div class="product-list">
   <app-product-card *ngFor="let product of products" [product]="product" />
+</div>
+
+<div class="load-more" *ngIf="hasMoreProducts">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="loadMore()"
+    [disabled]="isLoading"
+  >
+    <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+    <span *ngIf="!isLoading">Több termék betöltése</span>
+  </button>
 </div>

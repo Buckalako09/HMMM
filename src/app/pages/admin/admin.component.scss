@@ -34,3 +34,26 @@
 .admin-content {
   flex-grow: 1;
 }
+
+@media (max-width: 768px) {
+  .admin-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+
+  .admin-menu a {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .admin-content {
+    padding: 0.5rem;
+  }
+}

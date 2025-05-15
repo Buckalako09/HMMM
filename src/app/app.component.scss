@@ -2,6 +2,8 @@
   background-color: #cc0000;
   color: #fff0f0;
   font-family: "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
 
   .logo {
     font-weight: bold;
@@ -9,7 +11,12 @@
     color: #ffe6e6;
   }
 
-  a {
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  a,
+  button {
     color: #fff0f0;
     font-weight: 500;
     margin-left: 1rem;
@@ -23,7 +30,21 @@
     }
   }
 
-  .spacer {
-    flex: 1 1 auto;
+  .desktop-nav {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: block;
+    }
   }
 }

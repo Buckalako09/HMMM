@@ -6,6 +6,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +18,24 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Sikeres bejelentkezés:', this.loginForm.value);
-      // TODO LOGIN LOGIC
+      const { email, password } = this.loginForm.value;
+
+      try {
+        await this.loginService.login(email, password);
+        alert('Sikeres bejelentkezés!');
+        window.location.href = '/';
+      } catch (error: any) {
+        alert('Hibás email vagy jelszó: ' + error.message);
+      }
     }
   }
 }

@@ -41,6 +41,69 @@ h2 {
       margin: 0.5rem 0 0;
       color: #800000;
     }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin-top: 0.75rem;
+      gap: 0.5rem;
+
+      button {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid #cc0000;
+        background-color: white;
+        color: #cc0000;
+        font-size: 1rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        padding: 0;
+        line-height: 1;
+
+        &:hover {
+          background-color: #cc0000;
+          color: white;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      span {
+        min-width: 30px;
+        text-align: center;
+        font-weight: bold;
+        color: #800000;
+      }
+    }
+
+    .remove-btn {
+      margin-top: 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border: none;
+      background-color: transparent;
+      color: #cc0000;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+      border: 1px solid #cc0000;
+
+      &:hover {
+        background-color: #cc0000;
+        color: white;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
   }
 
   .item-total {
@@ -60,8 +123,30 @@ h2 {
   color: #800000;
 }
 
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+
+  .clear-cart-btn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #cc0000;
+      color: white;
+    }
+  }
+}
+
 .checkout-button {
-  margin: 1rem auto;
+  margin: 0;
   padding: 0.75rem 2rem;
   background-color: #cc0000;
   color: white;
@@ -69,8 +154,9 @@ h2 {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  display: block;
   transition: background-color 0.2s;
+  text-decoration: none;
+  display: inline-block;
 
   &:hover {
     background-color: #a30000;
@@ -82,4 +168,23 @@ h2 {
   color: #800000;
   margin-top: 4rem;
   font-size: 1.2rem;
+}
+
+.continue-shopping {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #cc0000;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #a30000;
+  }
 }

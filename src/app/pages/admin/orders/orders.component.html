@@ -1,21 +1,112 @@
 <h2>Admin – Rendelések</h2>
 
 <div class="order-list">
-  <div class="order-card" *ngFor="let order of orders">
-    <div class="order-header">
-      <strong>{{ order.id }}</strong> – {{ order.customer }}
-      <span class="status">{{ order.status }}</span>
+  <ng-container *ngIf="orders$ | async as orders">
+    <div *ngIf="orders.length > 0; else noOrders">
+      <div class="order-card" *ngFor="let order of orders">
+        <div class="order-header" (click)="toggleOrderDetails(order.id!)">
+          <div class="order-header-main">
+            <strong>{{ order.id }}</strong>
+            <mat-icon class="toggle-icon">
+              {{ expandedOrderId === order.id ? "expand_less" : "expand_more" }}
+            </mat-icon>
+          </div>
+          <div class="order-meta">
+            <div>
+              <span class="status-badge" [ngClass]="order.status">{{
+                getStatusText(order.status)
+              }}</span>
+            </div>
+            <div>{{ formatDate(order.createdAt) }}</div>
+            <div>
+              {{ order.totalPrice | price }}
+            </div>
+            <div>{{ getTotalItems(order) }} tétel</div>
+          </div>
+        </div>
+
+        <div class="order-details" *ngIf="expandedOrderId === order.id">
+          <div class="status-update-section">
+            <h4>Rendelés állapotának módosítása</h4>
+            <div class="status-form">
+              <mat-form-field appearance="fill">
+                <mat-label>Állapot</mat-label>
+                <mat-select [(ngModel)]="order.status">
+                  <mat-option
+                    *ngFor="let status of availableStatuses"
+                    [value]="status.value"
+                  >
+                    {{ status.label }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="isUpdatingStatus"
+                (click)="updateOrderStatus(order.id!, order.status)"
+              >
+                Állapot módosítása
+              </button>
+            </div>
+          </div>
+
+          <div class="order-details-content">
+            <div class="customer-info">
+              <h4>Vevő adatok</h4>
+              <p><strong>Név:</strong> {{ order.address.name }}</p>
+              <p><strong>Email:</strong> {{ order.address.email }}</p>
+              <p><strong>Telefon:</strong> {{ order.address.phone }}</p>
+              <p>
+                <strong>Cím:</strong> {{ order.address.postalCode }}
+                {{ order.address.city }}, {{ order.address.street }}
+              </p>
+              <p><strong>Ország:</strong> {{ order.address.country }}</p>
+            </div>
+
+            <div class="items-list">
+              <h4>Megrendelt termékek</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Termék</th>
+                    <th>Darabszám</th>
+                    <th>Egységár</th>
+                    <th>Részösszeg</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of order.items">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                      {{ item.price | price }}
+                    </td>
+                    <td>
+                      {{
+                        item.price * item.quantity
+                          | currency : "HUF" : "symbol" : "1.0-0"
+                      }}
+                    </td>
+                  </tr>
+                  <tr class="total-row">
+                    <td colspan="3">Összesen</td>
+                    <td>
+                      {{ order.totalPrice | price }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="order-meta">
-      Dátum: {{ order.date }}<br />
-      Összeg: {{ order.total | currency : "HUF" : "symbol" : "1.0-0" }}
+  </ng-container>
+
+  <ng-template #noOrders>
+    <div class="no-orders">
+      <p>Nincsenek rendelések az adatbázisban.</p>
     </div>
-    <ul class="order-items">
-      <li *ngFor="let item of order.items">
-        {{ item.qty }} × {{ item.name }} ({{
-          item.price | currency : "HUF" : "symbol" : "1.0-0"
-        }})
-      </li>
-    </ul>
-  </div>
+  </ng-template>
 </div>
